@@ -14,9 +14,10 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	jasper-devel
 BuildRequires:	autoconf
 BuildRequires:	expat-devel
-Buildrequires:	gpgme-devel
-Buildrequires:  libmcrypt-devel
-Buildrequires:  xmms-devel
+BuildRequires:	gpgme-devel
+BuildRequires:  libmcrypt-devel
+BuildRequires:  xmms-devel
+BuildRequires:	gtkhtml2-devel
 
 Obsoletes:	gyach <= 0.9.8
 Provides:	gyach = %{version}
