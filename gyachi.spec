@@ -22,6 +22,7 @@ BuildRequires:  libmcrypt-devel
 BuildRequires:  xmms-devel
 BuildRequires:	gtkhtml2-devel
 BuildRequires:	ImageMagick
+BuildRequires:	desktop-file-utils
 
 Obsoletes:	gyach <= 0.9.8
 Provides:	gyach = %{version}
