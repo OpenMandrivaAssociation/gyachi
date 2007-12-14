@@ -8,6 +8,9 @@ Source0: 	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		gyachi-1.1.0-disable_doc_install.patch
 URL: 		http://gyachi.sourceforge.net
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
+# Voice part is 32-bit only according to upstream, can't see any way
+# to disable voice but build the rest of the app - AdamW 2007/12
+ExclusiveArch:	%{ix86}
 BuildRequires:  gtk+2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	alsa-lib-devel
