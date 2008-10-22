@@ -1,19 +1,19 @@
-Version: 	1.1.0
+%define _disable_ld_no_undefined	1
+
+Version: 	1.1.48
 Summary: 	A GTK+ based Yahoo! Chat client
 Name: 		gyachi
-Release: 	%mkrel 3
+Release: 	%mkrel 1
 License: 	GPLv2+
 Group: 		Networking/Instant messaging
 Source0: 	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		gyachi-1.1.0-disable_doc_install.patch
+Patch0:		gyachi-1.1.48-disable_doc_install.patch
 URL: 		http://gyachi.sourceforge.net
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
-# Voice part is 32-bit only according to upstream, can't see any way
-# to disable voice but build the rest of the app - AdamW 2007/12
-ExclusiveArch:	%{ix86}
 BuildRequires:  gtk+2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	alsa-lib-devel
+BuildRequires:	pulseaudio-devel
 BuildRequires:	jasper-devel
 BuildRequires:	autoconf
 BuildRequires:	expat-devel
@@ -21,11 +21,13 @@ BuildRequires:	gpgme-devel
 BuildRequires:  libmcrypt-devel
 BuildRequires:  xmms-devel
 BuildRequires:	gtkhtml2-devel
+BuildRequires:	libnotify-devel
 BuildRequires:	ImageMagick
 BuildRequires:	desktop-file-utils
 
 Obsoletes:	gyach <= 0.9.8
 Provides:	gyach = %{version}
+Suggests:	plugin-pulseaudio
 
 %description
 GyachI is a GTK+ based Yahoo! Chat client. It is a continuation of
@@ -66,6 +68,14 @@ Requires:	%{name} >= %{version}
 %description plugin-photosharing
 %{summary}.
 
+%package	plugin-pulseaudio
+Summary:	PulseAudio plugin for GyachI
+Group:		Networking/Instant messaging
+Requires:	%{name} >= %{version}
+
+%description plugin-pulseaudio
+%{summary}.
+
 %package	plugin-xmms
 Summary:	XMMS plugin for GyachI
 Group:		Networking/Instant messaging
@@ -83,19 +93,23 @@ perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 
 %build
 ./autogen.sh
-%configure2_5x --disable-rpath --enable-maintainer-mode --enable-v4l2
+%configure2_5x \
+%ifarch x86_64
+	--disable-wine \
+%endif
+	--disable-rpath --enable-maintainer-mode --enable-v4l2 --enable-plugin_photo_album --enable-plugin_xmms
 %make
 
 %install
 rm -rf %{buildroot}
-%makeinstall
+%makeinstall_std
 desktop-file-install --vendor="" \
   --add-category="GTK" \
   --remove-key="Encoding" \
   --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-install -m 644 -D pixmaps/gyach-icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-install -m 644 -D pixmaps/gyach-icon_48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+install -m 644 -D themes/gyachi-classic/gyach-icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -m 644 -D themes/gyachi-classic/gyach-icon_48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 
 %find_lang %{name}
 
@@ -121,7 +135,11 @@ rm -rf %{buildroot}
 %doc doc/html/gyachi-help.html doc/html/gyachi-ylinks.html doc/html/HOWTO-SIP.html
 %{_bindir}/%{name}*
 %dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/plugins
 %{_libdir}/%{name}-*
+%{_libdir}/lib%{name}.so
+%{_libdir}/%{name}/plugins/%{name}alsa.so
+%{_libdir}/%{name}/plugins/%{name}libnotify.so
 %{_datadir}/%{name}
 %{_datadir}/applications/gyachi.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
@@ -141,6 +159,10 @@ rm -rf %{buildroot}
 %files plugin-photosharing
 %defattr(-, root, root, 0775)
 %{_libdir}/%{name}/plugins/%{name}photos.so
+
+%files plugin-pulseaudio
+%defattr(-, root, root, 0775)
+%{_libdir}/%{name}/plugins/%{name}pulseaudio.so
 
 %files plugin-xmms
 %defattr(-, root, root, 0775)
