@@ -1,6 +1,6 @@
 %define _disable_ld_no_undefined	1
 
-Version: 	1.1.48
+Version: 	1.1.59
 Summary: 	A GTK+ based Yahoo! Chat client
 Name: 		gyachi
 Release: 	%mkrel 1
@@ -22,6 +22,7 @@ BuildRequires:  libmcrypt-devel
 BuildRequires:  xmms-devel
 BuildRequires:	gtkhtml2-devel
 BuildRequires:	libnotify-devel
+BuildRequires:	gtkspell-devel
 BuildRequires:	ImageMagick
 BuildRequires:	desktop-file-utils
 
@@ -85,6 +86,14 @@ Requires:	xmms
 %description plugin-xmms
 %{summary}.
 
+%package	plugin-gtkspell
+Summary:	Spell check plugin for GyachI
+Group:		Networking/Instant messaging
+Requires:	%{name} >= %{version}
+
+%description plugin-gtkspell
+%{summary}.
+
 %prep
 %setup -q
 %patch0 -p1 -b .doc
@@ -110,6 +119,11 @@ desktop-file-install --vendor="" \
 
 install -m 644 -D themes/gyachi-classic/gyach-icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 install -m 644 -D themes/gyachi-classic/gyach-icon_48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+
+# don't think these are any use for anything, if they are, we can
+# re-add them in -devel packages - AdamW 2008/12
+rm -f %{buildroot}%{_libdir}/%{name}/plugins/*.la
+rm -f %{buildroot}%{_libdir}/libgyachi.la
 
 %find_lang %{name}
 
@@ -138,32 +152,36 @@ rm -rf %{buildroot}
 %dir %{_libdir}/%{name}/plugins
 %{_libdir}/%{name}-*
 %{_libdir}/lib%{name}.so
-%{_libdir}/%{name}/plugins/%{name}alsa.so
-%{_libdir}/%{name}/plugins/%{name}libnotify.so
+%{_libdir}/%{name}/plugins/lib%{name}alsa.so
+%{_libdir}/%{name}/plugins/lib%{name}libnotify.so
 %{_datadir}/%{name}
 %{_datadir}/applications/gyachi.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 
 %files plugin-blowfish
 %defattr(-, root, root, 0775)
-%{_libdir}/%{name}/plugins/%{name}blowfish.so
+%{_libdir}/%{name}/plugins/lib%{name}blowfish.so
 
 %files plugin-gpgme
 %defattr(-, root, root, 0775)
-%{_libdir}/%{name}/plugins/%{name}gpgme.so
+%{_libdir}/%{name}/plugins/lib%{name}gpgme.so
 
 %files plugin-mcrypt
 %defattr(-, root, root, 0775)
-%{_libdir}/%{name}/plugins/%{name}mcrypt.so
+%{_libdir}/%{name}/plugins/lib%{name}mcrypt.so
 
 %files plugin-photosharing
 %defattr(-, root, root, 0775)
-%{_libdir}/%{name}/plugins/%{name}photos.so
+%{_libdir}/%{name}/plugins/lib%{name}photos.so
 
 %files plugin-pulseaudio
 %defattr(-, root, root, 0775)
-%{_libdir}/%{name}/plugins/%{name}pulseaudio.so
+%{_libdir}/%{name}/plugins/lib%{name}pulseaudio.so
 
 %files plugin-xmms
 %defattr(-, root, root, 0775)
-%{_libdir}/%{name}/plugins/%{name}xmms.so
+%{_libdir}/%{name}/plugins/lib%{name}xmms.so
+
+%files plugin-gtkspell
+%defattr(-, root, root, 0775)
+%{_libdir}/%{name}/plugins/lib%{name}gtkspell.so
