@@ -23,7 +23,7 @@ BuildRequires:  xmms-devel
 BuildRequires:	gtkhtml2-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	gtkspell-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
 
 Obsoletes:	gyach <= 0.9.8
