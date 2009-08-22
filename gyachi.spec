@@ -1,13 +1,13 @@
-%define _disable_ld_no_undefined	1
-
-Version: 	1.1.59
+Version: 	1.1.71
 Summary: 	A GTK+ based Yahoo! Chat client
 Name: 		gyachi
 Release: 	%mkrel 1
 License: 	GPLv2+
 Group: 		Networking/Instant messaging
 Source0: 	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		gyachi-1.1.48-disable_doc_install.patch
+Patch0:		gyachi-1.1.71-disable_doc_install.patch
+Patch1:		gyachi-1.1.71-fix-linkage.patch
+Patch2:		gyachi-1.1.71-fix-str-fmt.patch
 URL: 		http://gyachi.sourceforge.net
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:  gtk+2-devel
@@ -97,6 +97,8 @@ Requires:	%{name} >= %{version}
 %prep
 %setup -q
 %patch0 -p1 -b .doc
+%patch1 -p0 -b .link
+%patch2 -p0 -b .str
 
 perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 
@@ -106,7 +108,8 @@ perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 %ifarch x86_64
 	--disable-wine \
 %endif
-	--disable-rpath --enable-maintainer-mode --enable-v4l2 --enable-plugin_photo_album --enable-plugin_xmms
+	--disable-rpath --enable-maintainer-mode \
+	--enable-plugin_photo_album --enable-plugin_xmms
 %make
 
 %install
