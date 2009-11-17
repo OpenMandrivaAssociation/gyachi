@@ -1,17 +1,17 @@
-Version: 	1.2.2
-Summary: 	A GTK+ based Yahoo! Chat client
-Name: 		gyachi
-Release: 	%mkrel 1
-License: 	GPLv2+
-Group: 		Networking/Instant messaging
-Source0: 	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Version:	1.2.2
+Summary:	A GTK+ based Yahoo! Chat client
+Name:		gyachi
+Release:	%mkrel 1
+License:	GPLv2+
+Group:		Networking/Instant messaging
+Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		gyachi-1.1.71-disable_doc_install.patch
 Patch1:		gyachi-1.1.71-fix-linkage.patch
 Patch2:		gyachi-1.1.71-fix-str-fmt.patch
 Patch3:		gyachi-1.1.71-fix-gpgme-build.patch
-URL: 		http://sourceforge.net/projects/gyachi/
-BuildRoot: 	%{_tmppath}/%{name}-buildroot
-BuildRequires:  gtk+2-devel
+URL:		http://sourceforge.net/projects/gyachi/
+BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRequires:	gtk+2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	pulseaudio-devel
@@ -19,8 +19,8 @@ BuildRequires:	jasper-devel
 BuildRequires:	autoconf
 BuildRequires:	expat-devel
 BuildRequires:	gpgme-devel
-BuildRequires:  libmcrypt-devel
-BuildRequires:  xmms-devel
+BuildRequires:	libmcrypt-devel
+BuildRequires:	xmms-devel
 BuildRequires:	gtkhtml2-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	gtkspell-devel
@@ -38,7 +38,7 @@ almost all of the features you would expect to find on the official
 Windows Yahoo! client: Voice chat, webcams, faders, 'nicknames',
 audibles, avatars, display images, and more.
 
-%package	plugin-blowfish
+%package  	plugin-blowfish
 Summary:	Blowfish encryption plugin for GyachI
 Group:		Networking/Instant messaging
 Requires:	%{name} >= %{version}
@@ -106,7 +106,7 @@ perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 
 %build
 ./autogen.sh
-export 	CPPFLAGS='-D_FILE_OFFSET_BITS=64'
+export CPPFLAGS='-D_FILE_OFFSET_BITS=64'
 %configure2_5x \
 %ifarch x86_64
 	--disable-wine \
