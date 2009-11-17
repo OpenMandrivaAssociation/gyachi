@@ -8,6 +8,7 @@ Source0: 	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		gyachi-1.1.71-disable_doc_install.patch
 Patch1:		gyachi-1.1.71-fix-linkage.patch
 Patch2:		gyachi-1.1.71-fix-str-fmt.patch
+Patch3:		gyachi-1.1.71-fix-gpgme-build.patch
 URL: 		http://gyachi.sourceforge.net
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:  gtk+2-devel
@@ -99,6 +100,7 @@ Requires:	%{name} >= %{version}
 %patch0 -p1 -b .doc
 %patch1 -p0 -b .link
 %patch2 -p0 -b .str
+%patch3 -p1 -b .gpgme
 
 perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 
