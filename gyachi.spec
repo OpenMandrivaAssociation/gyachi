@@ -109,7 +109,8 @@ perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 	--disable-wine \
 %endif
 	--disable-rpath --enable-maintainer-mode \
-	--enable-plugin_photo_album --enable-plugin_xmms
+	--enable-plugin_photo_album --enable-plugin_xmms \
+	CPPFLAGS='-D_FILE_OFFSET_BITS=64'
 %make
 
 %install
