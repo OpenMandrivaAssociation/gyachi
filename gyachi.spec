@@ -1,7 +1,7 @@
-Version: 	1.1.71
+Version: 	1.2.2
 Summary: 	A GTK+ based Yahoo! Chat client
 Name: 		gyachi
-Release: 	%mkrel 2
+Release: 	%mkrel 1
 License: 	GPLv2+
 Group: 		Networking/Instant messaging
 Source0: 	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -9,7 +9,7 @@ Patch0:		gyachi-1.1.71-disable_doc_install.patch
 Patch1:		gyachi-1.1.71-fix-linkage.patch
 Patch2:		gyachi-1.1.71-fix-str-fmt.patch
 Patch3:		gyachi-1.1.71-fix-gpgme-build.patch
-URL: 		http://gyachi.sourceforge.net
+URL: 		http://sourceforge.net/projects/gyachi/
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:  gtk+2-devel
 BuildRequires:	gettext-devel
@@ -106,13 +106,13 @@ perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 
 %build
 ./autogen.sh
+export 	CPPFLAGS='-D_FILE_OFFSET_BITS=64'
 %configure2_5x \
 %ifarch x86_64
 	--disable-wine \
 %endif
 	--disable-rpath --enable-maintainer-mode \
-	--enable-plugin_photo_album --enable-plugin_xmms \
-	CPPFLAGS='-D_FILE_OFFSET_BITS=64'
+	--enable-plugin_photo_album --enable-plugin_xmms
 %make
 
 %install
