@@ -1,7 +1,7 @@
-Version:	1.2.2
+Version:	1.2.4
 Summary:	A GTK+ based Yahoo! Chat client
 Name:		gyachi
-Release:	%mkrel 3
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		Networking/Instant messaging
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
