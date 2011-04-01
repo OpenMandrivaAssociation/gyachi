@@ -1,7 +1,7 @@
 Version:	1.2.10
 Summary:	A GTK+ based Yahoo! Chat client
 Name:		gyachi
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Networking/Instant messaging
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -9,6 +9,7 @@ Patch0:		gyachi-1.1.71-disable_doc_install.patch
 Patch1:		gyachi-1.1.71-fix-linkage.patch
 Patch2:		gyachi-1.1.71-fix-str-fmt.patch
 Patch3:		gyachi-1.1.71-fix-gpgme-build.patch
+Patch4:		gyachi-1.2.10-kernel-2.6.38.patch
 URL:		http://sourceforge.net/projects/gyachi/
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	gtk+2-devel
@@ -26,7 +27,7 @@ BuildRequires:	libnotify-devel
 BuildRequires:	gtkspell-devel
 BuildRequires:	imagemagick
 BuildRequires:	desktop-file-utils
-BuildRequires:	libv4l-devel
+BuildRequires:	libv4l-devel >= 0.8.3
 
 Obsoletes:	gyach <= 0.9.8
 Provides:	gyach = %{version}
@@ -102,6 +103,7 @@ Requires:	%{name} >= %{version}
 %patch1 -p0 -b .link
 %patch2 -p0 -b .str
 %patch3 -p1 -b .gpgme
+%patch4 -p0 -b .kernel
 
 perl -pi -e 's,%{name}.png,%{name},g' %{name}.desktop
 
