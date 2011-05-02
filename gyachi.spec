@@ -115,6 +115,7 @@ export CPPFLAGS='-D_FILE_OFFSET_BITS=64'
 	--disable-wine \
 %endif
 	--disable-rpath --enable-maintainer-mode \
+	--disable-plugin_libnotify \
 	--enable-plugin_photo_album --enable-plugin_xmms
 %make
 
