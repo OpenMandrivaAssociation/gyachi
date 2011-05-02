@@ -163,7 +163,6 @@ rm -rf %{buildroot}
 %{_libdir}/%{name}-*
 %{_libdir}/lib%{name}.so
 %{_libdir}/%{name}/plugins/lib%{name}alsa.so
-%{_libdir}/%{name}/plugins/lib%{name}libnotify.so
 %{_datadir}/%{name}
 %{_datadir}/applications/gyachi.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
