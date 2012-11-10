@@ -1,0 +1,39 @@
+--- gyachi-1.1.71/configure.ac.tmpl	2008-12-22 14:57:54.000000000 +0100
++++ gyachi-1.1.71.new/configure.ac.tmpl	2009-11-17 11:59:59.000000000 +0100
+@@ -4,6 +4,7 @@
+ AM_CONFIG_HEADER(config.h)
+ AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+ 
++AC_USE_SYSTEM_EXTENSIONS
+ AM_MAINTAINER_MODE
+ AC_ISC_POSIX
+ AC_PROG_CC
+@@ -14,6 +15,7 @@
+ AM_PROG_LIBTOOL
+ AM_GNU_GETTEXT
+ AM_PROG_AS
++AC_SYS_LARGEFILE
+ 
+ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "gyachi", [ Define package name for gettext support, in case it differs from main package ])
+ AC_SUBST(GETTEXT_PACKAGE)
+--- gyachi-1.1.71/plugins/gpgme/Makefile.am	2009-11-17 12:02:09.000000000 +0100
++++ gyachi-1.1.71.new/plugins/gpgme/Makefile.am	2009-11-17 12:01:55.000000000 +0100
+@@ -2,7 +2,7 @@
+ plugindir = $(pkglibdir)/plugins
+ 
+ libgyachigpgme_la_SOURCES = gyachi-gpgme.c
+-libgyachigpgme_la_LIBADD  = @GTK_LIBS@ -lgpgme
++libgyachigpgme_la_LIBADD  = @GTK_LIBS@ -lgpgme -lgpg-error
+ libgyachigpgme_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+--- gyachi-1.1.71/plugins/gpgme/gyachi-gpgme.c	2008-11-18 21:59:18.000000000 +0100
++++ gyachi-1.1.71.new/plugins/gpgme/gyachi-gpgme.c	2009-11-17 12:07:49.000000000 +0100
+@@ -23,6 +23,7 @@
+  *
+  *****************************************************************************/
+ 
++#include "config.h"
+ #include "plugin_api.h"
+ #include <gpgme.h>
+ #include <stdio.h>

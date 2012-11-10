@@ -1,0 +1,11 @@
+--- webcam/gyachewebcam.c.str	2009-08-22 09:19:49.000000000 +0200
++++ webcam/gyachewebcam.c	2009-08-22 09:20:00.000000000 +0200
+@@ -550,7 +550,7 @@
+ 			  _("Last image received:"), stampbuf );
+ 	}
+ 	else {
+-		snprintf( timebuf, 126, _("Connected") );
++		snprintf( timebuf, 126, "%s", _("Connected") );
+ 	}
+ 	gtk_label_set_markup(GTK_LABEL(vstatuslabel), timebuf );
+ }

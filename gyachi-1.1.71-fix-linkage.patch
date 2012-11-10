@@ -1,0 +1,110 @@
+--- plugins/alsa/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/alsa/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachialsa_la_SOURCES = gyachi-alsa.c
+ libgyachialsa_la_LIBADD  = @GTK_LIBS@ @ALSA_LIBS@
+-libgyachialsa_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachialsa_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/blowfish/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/blowfish/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachiblowfish_la_SOURCES = gyachi-blowfish.c
+ libgyachiblowfish_la_LIBADD  = @GTK_LIBS@ @PLUGIN_GYACHI_LIB@ 
+-libgyachiblowfish_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachiblowfish_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/esd/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/esd/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachiesd_la_SOURCES = gyachi-esd.c
+ libgyachiesd_la_LIBADD  = @GTK_LIBS@ 
+-libgyachiesd_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachiesd_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/gpgme/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/gpgme/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachigpgme_la_SOURCES = gyachi-gpgme.c
+ libgyachigpgme_la_LIBADD  = @GTK_LIBS@ -lgpgme
+-libgyachigpgme_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachigpgme_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/gtkspell/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/gtkspell/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachigtkspell_la_SOURCES = gyachi-gtkspell.c
+ libgyachigtkspell_la_LIBADD  = @GTK_LIBS@ @GTKSPELL_LIBS@
+-libgyachigtkspell_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachigtkspell_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/libnotify/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/libnotify/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachilibnotify_la_SOURCES = gyachi-libnotify.c
+ libgyachilibnotify_la_LIBADD  = @GTK_LIBS@ @LIBNOTIFY_LIBS@
+-libgyachilibnotify_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -export-dynamic
++libgyachilibnotify_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module -export-dynamic
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/mcrypt/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/mcrypt/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachimcrypt_la_SOURCES = gyachi-mcrypt.c
+ libgyachimcrypt_la_LIBADD  = @GTK_LIBS@ -lmcrypt
+-libgyachimcrypt_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachimcrypt_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/photos/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/photos/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachiphotos_la_SOURCES = gyachi-photos.c
+ libgyachiphotos_la_LIBADD  = @GTK_LIBS@
+-libgyachiphotos_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachiphotos_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/pulseaudio/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/pulseaudio/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachipulseaudio_la_SOURCES = gyachi-pulseaudio.c
+ libgyachipulseaudio_la_LIBADD  = @GTK_LIBS@ @PULSEAUDIO_LIBS@
+-libgyachipulseaudio_la_LDFLAGS = -shared -fpic -fPIC -avoid-version
++libgyachipulseaudio_la_LDFLAGS = -shared -fpic -fPIC -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
+--- plugins/xmms/Makefile.am.orig	2009-08-22 09:09:50.000000000 +0200
++++ plugins/xmms/Makefile.am	2009-08-22 09:10:40.000000000 +0200
+@@ -3,7 +3,7 @@
+ 
+ libgyachixmms_la_SOURCES = gyachi-xmms.c
+ libgyachixmms_la_LIBADD  = @GTK_LIBS@ -lxmms
+-libgyachixmms_la_LDFLAGS = -shared -fpic -fPIC -Xlinker -Bdynamic -Wl,--export-dynamic -avoid-version
++libgyachixmms_la_LDFLAGS = -shared -fpic -fPIC -Xlinker -Bdynamic -Wl,--export-dynamic -avoid-version -module
+ 
+ # Required for localization
+ localedir = $(datadir)/locale
