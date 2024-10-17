@@ -10,7 +10,7 @@ Patch0:		gyachi-1.1.71-disable_doc_install.patch
 Patch1:		gyachi-1.1.71-fix-linkage.patch
 Patch2:		gyachi-1.1.71-fix-str-fmt.patch
 Patch3:		gyachi-1.1.71-fix-gpgme-build.patch
-URL:		http://sourceforge.net/projects/gyachi/
+URL:		https://sourceforge.net/projects/gyachi/
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	gettext-devel
 BuildRequires:	pulseaudio-devel
